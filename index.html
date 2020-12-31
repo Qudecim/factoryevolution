@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="../../public/style/style.css">
-    <script src="../../public/javascript/vendor/jquery-3.5.1.js"></script>
+    <link rel="stylesheet" href="/style/style.css">
+    <script src="/javascript/vendor/jquery-3.5.1.js"></script>
 </head>
 <body>
 <canvas id="canvas" oncontextmenu="return false;"></canvas>
 
 <div class="panel-right">
     <div class="tabs">
-        <div class="tab tab-active" data-tab="1"><img class="tab_icon" src="../../public/image/ui/main.png"></div>
-        <div class="tab" data-tab="2"><img class="tab_icon" src="../../public/image/ui/energy.png"></div>
-        <div class="tab" data-tab="3"><img class="tab_icon" src="../../public/image/ui/miner.png"></div>
-        <div class="tab" data-tab="4"><img class="tab_icon" src="../../public/image/ui/factory.png"></div>
-        <div class="tab" data-tab="5"><img class="tab_icon" src="../../public/image/ui/processing.png"></div>
-        <div class="tab" data-tab="6"><img class="tab_icon" src="../../public/image/ui/up.png"></div>
+        <div class="tab tab-active" data-tab="1"><img class="tab_icon" src="/image/ui/main.png"></div>
+        <div class="tab" data-tab="2"><img class="tab_icon" src="/image/ui/energy.png"></div>
+        <div class="tab" data-tab="3"><img class="tab_icon" src="/image/ui/miner.png"></div>
+        <div class="tab" data-tab="4"><img class="tab_icon" src="/image/ui/factory.png"></div>
+        <div class="tab" data-tab="5"><img class="tab_icon" src="/image/ui/processing.png"></div>
+        <div class="tab" data-tab="6"><img class="tab_icon" src="/image/ui/up.png"></div>
     </div>
     <div class="container">
         <div class="content" data-tab="c1">
@@ -62,19 +62,19 @@
     <div class="bi_es">
         <div class="bi_es_header">Добыча на такт</div>
         <div class="bi_es_list">
-            <div class="bi_es_item"><img class="bi_es_item_img" id="bi_extract_img" src="../../public/image/resource/money.png"><div id="bi_extract_amount" class="bi_es_item_amount">20</div></div>
+            <div class="bi_es_item"><img class="bi_es_item_img" id="bi_extract_img" src="/image/resource/money.png"><div id="bi_extract_amount" class="bi_es_item_amount">20</div></div>
         </div>
     </div>
     <div class="bi_es" id="bi_spend">
         <div class="bi_es_header">Траты на такт</div>
         <div class="bi_es_list" id="bi_spend_list">
-            <div class="bi_es_item"><img class="bi_es_item_img" src="../../public/image/resource/iron.png"><div class="bi_es_item_amount">20</div></div>
+            <div class="bi_es_item"><img class="bi_es_item_img" src="/image/resource/iron.png"><div class="bi_es_item_amount">20</div></div>
         </div>
     </div>
 </div>
 
 <div class="positions">
-	<div class="positions_header"><div class="ai_img_container"><img class="ai_img" src="../../public/image/ui/aim.png"></div>Позиционирование</div>
+	<div class="positions_header"><div class="ai_img_container"><img class="ai_img" src="/image/ui/aim.png"></div>Позиционирование</div>
 	<div class="positions_go">
 		<div class="positions_content_header">Переместиться:</div>
 		<select class="positions_all" size="5">
@@ -158,11 +158,11 @@
 <div class="panel_item_container" id="panel_item"  data-id="0" style="display:none;">
     <div class="panel_item">
         <div class="panel_item_header">Алюминевая шахта</div>
-		<img src="../../public/image/ui/remove.png" onclick="ui.removeItem();" class="panel_item_remove">
-		<img src="../../public/image/ui/close.png" onclick="ui.closeItem();" class="panel_item_close">
+		<img src="/image/ui/remove.png" onclick="ui.removeItem();" class="panel_item_remove">
+		<img src="/image/ui/close.png" onclick="ui.closeItem();" class="panel_item_close">
 		
 		<div class="panel_item_row">
-			<div class="panel_item_img_container"><img class="panel_item_img" src="../../public/image/steel.png"></div>
+			<div class="panel_item_img_container"><img class="panel_item_img" src="/image/steel.png"></div>
 			<div class="panel_item_right">
 				<div class="panel_item_right_header">Описание</div>
 				<div class="panel_item_right_content">
@@ -171,20 +171,20 @@
 					<div class="panel_item_resource">
                         <div class="panel_item_resource_header">Добыча на такт</div>
                         <div class="panel_item_resource_list">
-                            <div class="panel_item_resource_list_item"><img class="panel_item_resource_list_item_img" id="panel_item_resource_list_item_extract_img" src="../../public/image/resource/money.png"><div id="panel_item_resource_list_item_extract_amount" class="panel_item_resource_list_item_amount">20</div></div>
+                            <div class="panel_item_resource_list_item"><img class="panel_item_resource_list_item_img" id="panel_item_resource_list_item_extract_img" src="/image/resource/money.png"><div id="panel_item_resource_list_item_extract_amount" class="panel_item_resource_list_item_amount">20</div></div>
                         </div>
                     </div>
                     <div class="panel_item_resource" id="panel_item_resource_spend">
                         <div class="panel_item_resource_header">Траты на такт</div>
                         <div class="panel_item_resource_list" id="panel_item_resource_list_spend">
-                            <div class="panel_item_resource_list_item"><img class="panel_item_resource_list_item_img" id="panel_item_resource_list_item_extract_img" src="../../public/image/resource/money.png"><div id="panel_item_resource_list_item_extract_amount" class="panel_item_resource_list_item_amount">20</div></div>
-                            <div class="panel_item_resource_list_item"><img class="panel_item_resource_list_item_img" id="panel_item_resource_list_item_extract_img" src="../../public/image/resource/money.png"><div id="panel_item_resource_list_item_extract_amount" class="panel_item_resource_list_item_amount">20</div></div>
+                            <div class="panel_item_resource_list_item"><img class="panel_item_resource_list_item_img" id="panel_item_resource_list_item_extract_img" src="/image/resource/money.png"><div id="panel_item_resource_list_item_extract_amount" class="panel_item_resource_list_item_amount">20</div></div>
+                            <div class="panel_item_resource_list_item"><img class="panel_item_resource_list_item_img" id="panel_item_resource_list_item_extract_img" src="/image/resource/money.png"><div id="panel_item_resource_list_item_extract_amount" class="panel_item_resource_list_item_amount">20</div></div>
                         </div>
                     </div>
 				</div>
 				<div class="panel_item_right_header">Функционал</div>
 				<div class="panel_item_right_content">
-				    <div class="panel_item_button" onclick="ui.upgradeItem();"><img class="panel_item_button_img" src="../../public/image/ui/up_arrow.png"></div>
+				    <div class="panel_item_button" onclick="ui.upgradeItem();"><img class="panel_item_button_img" src="/image/ui/up_arrow.png"></div>
 				</div>
 			</div>
 		</div>
@@ -259,16 +259,16 @@
     <div class="message"></div>
 </div>
 
-<script src="../../public/javascript/positions.js"></script>
-<script src="../../public/javascript/UI.js"></script>
-<script src="../../public/javascript/loaderUi.js"></script>
-<script src="../../public/javascript/general.js"></script>
-<script src="../../public/javascript/build.js"></script>
-<script src="../../public/javascript/item.js"></script>
-<script src="../../public/javascript/controls.js"></script>
-<script src="../../public/javascript/game.js"></script>
-<script src="../../public/javascript/map.js"></script>
-<script src="../../public/javascript/main.js"></script>
+<script src="/javascript/positions.js"></script>
+<script src="/javascript/UI.js"></script>
+<script src="/javascript/loaderUi.js"></script>
+<script src="/javascript/general.js"></script>
+<script src="/javascript/build.js"></script>
+<script src="/javascript/item.js"></script>
+<script src="/javascript/controls.js"></script>
+<script src="/javascript/game.js"></script>
+<script src="/javascript/map.js"></script>
+<script src="/javascript/main.js"></script>
 
 </body>
 </html>
