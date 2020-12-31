@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../public/style/style.css">
+    <script src="../../public/javascript/vendor/jquery-3.5.1.js"></script>
+</head>
+<body>
+<canvas id="canvas" oncontextmenu="return false;"></canvas>
+
+<div class="panel-right">
+    <div class="tabs">
+        <div class="tab tab-active" data-tab="1"><img class="tab_icon" src="../../public/image/ui/main.png"></div>
+        <div class="tab" data-tab="2"><img class="tab_icon" src="../../public/image/ui/energy.png"></div>
+        <div class="tab" data-tab="3"><img class="tab_icon" src="../../public/image/ui/miner.png"></div>
+        <div class="tab" data-tab="4"><img class="tab_icon" src="../../public/image/ui/factory.png"></div>
+        <div class="tab" data-tab="5"><img class="tab_icon" src="../../public/image/ui/processing.png"></div>
+        <div class="tab" data-tab="6"><img class="tab_icon" src="../../public/image/ui/up.png"></div>
+    </div>
+    <div class="container">
+        <div class="content" data-tab="c1">
+            <div class="header">Основное</div>
+            <div class="headerRightListResourse">
+                <div class="headerRightListResourse_item">Имеется</div>
+                <div class="headerRightListResourse_item">Добыча</div>
+                <div class="headerRightListResourse_item">Траты</div>
+            </div>
+            <div class="list" id="rightListResource">
+            </div>
+        </div>
+		<div class="content" data-tab="c2" style="display: none;">
+            <div class="header">Производство энергии</div>
+            <div class="list" id="energyBuildings">
+            </div>
+        </div>
+        <div class="content" data-tab="c3" style="display: none;">
+            <div class="header">Добыча</div>
+            <div class="list" id="extractBuildings">
+            </div>
+        </div>
+        <div class="content" data-tab="c4" style="display: none;">
+            <div class="header">Производство</div>
+            <div class="list" id="factoryBuildings">
+            </div>
+        </div>
+		<div class="content" data-tab="c5" style="display: none;">
+            <div class="header">Переработка</div>
+            <div class="list" id="processingBuildings">
+            </div>
+        </div>
+        <div class="content" data-tab="c6" style="display: none;">
+            <div class="header">Улучшения</div>
+        </div>
+    </div>
+</div>
+
+<div class="building_info" style="display: none;">
+    <div class="header" id="bi_name"></div>
+    <div class="bi_img_container"><img class="bi_img" id="bi_img" src=""></div>
+    <div class="bi_description" id="bi_description"></div>
+    <div class="bi_es">
+        <div class="bi_es_header">Добыча на такт</div>
+        <div class="bi_es_list">
+            <div class="bi_es_item"><img class="bi_es_item_img" id="bi_extract_img" src="../../public/image/resource/money.png"><div id="bi_extract_amount" class="bi_es_item_amount">20</div></div>
+        </div>
+    </div>
+    <div class="bi_es" id="bi_spend">
+        <div class="bi_es_header">Траты на такт</div>
+        <div class="bi_es_list" id="bi_spend_list">
+            <div class="bi_es_item"><img class="bi_es_item_img" src="../../public/image/resource/iron.png"><div class="bi_es_item_amount">20</div></div>
+        </div>
+    </div>
+</div>
+
+<div class="positions">
+	<div class="positions_header"><div class="ai_img_container"><img class="ai_img" src="../../public/image/ui/aim.png"></div>Позиционирование</div>
+	<div class="positions_go">
+		<div class="positions_content_header">Переместиться:</div>
+		<select class="positions_all" size="5">
+		</select>
+	</div>
+	<div class="positions_new">
+		<div class="positions_content_header">Сохранить текущую точку</div>
+		<input type="text" class="positions_new_name" value="Позиция 1">
+		<div class="positions_button" onclick="positionsUi.addPoint();">Добавить</div>
+	</div>
+</div>
+<style>
+.positions {
+	position: fixed;
+    left: 20px;
+    top:50px;
+    background: #222;
+    border-radius: 5px;
+    color: #ddd;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+	width:200px;
+	height:315px;
+	height:28px;
+	overflow:hidden;
+}
+.positions_header {
+	font-size:14px;
+	display:flex;
+	justify-content:center;
+	padding:5px;
+}
+.positions_go, .positions_new {
+	border:1px solid #666;
+	border-radius:4px;
+	padding:5px;
+}
+.positions_content_header {
+	font-size:14px;
+	padding-bottom:5px;
+}
+.positions_all {
+	width:100%;
+	overflow-y:auto;
+	outline:none;
+	cursor:pointer;
+	color:#ddd;
+	background:#333;
+}
+.positions_all option {
+	padding:5px;
+}
+.positions_new {
+	margin-top:10px;
+}
+.positions_new_name {
+	border:none;
+	border-bottom:1px solid #666;
+	background:#222;
+	color:#ddd;
+	outline:none;
+	font-size:14px;
+	width:100%;
+}
+.positions_button {
+	margin:5px 0;
+	text-align:center;
+	border:1px solid #555;
+	cursor:pointer;
+	padding:5px;
+}
+</style>
+
+<div class="panel_top">
+</div>
+
+
+
+
+<div class="panel_item_container" id="panel_item"  data-id="0" style="display:none;">
+    <div class="panel_item">
+        <div class="panel_item_header">Алюминевая шахта</div>
+		<img src="../../public/image/ui/remove.png" onclick="ui.removeItem();" class="panel_item_remove">
+		<img src="../../public/image/ui/close.png" onclick="ui.closeItem();" class="panel_item_close">
+		
+		<div class="panel_item_row">
+			<div class="panel_item_img_container"><img class="panel_item_img" src="../../public/image/steel.png"></div>
+			<div class="panel_item_right">
+				<div class="panel_item_right_header">Описание</div>
+				<div class="panel_item_right_content">
+				    <div class="panel_item_text">Уровень:<span class="panel_item_level panel_item_text_value">0</span></div>
+				    <div class="panel_item_text">Стоимость улучшения:<span class="panel_item_level_cost panel_item_text_value">0</span></div>
+					<div class="panel_item_resource">
+                        <div class="panel_item_resource_header">Добыча на такт</div>
+                        <div class="panel_item_resource_list">
+                            <div class="panel_item_resource_list_item"><img class="panel_item_resource_list_item_img" id="panel_item_resource_list_item_extract_img" src="../../public/image/resource/money.png"><div id="panel_item_resource_list_item_extract_amount" class="panel_item_resource_list_item_amount">20</div></div>
+                        </div>
+                    </div>
+                    <div class="panel_item_resource" id="panel_item_resource_spend">
+                        <div class="panel_item_resource_header">Траты на такт</div>
+                        <div class="panel_item_resource_list" id="panel_item_resource_list_spend">
+                            <div class="panel_item_resource_list_item"><img class="panel_item_resource_list_item_img" id="panel_item_resource_list_item_extract_img" src="../../public/image/resource/money.png"><div id="panel_item_resource_list_item_extract_amount" class="panel_item_resource_list_item_amount">20</div></div>
+                            <div class="panel_item_resource_list_item"><img class="panel_item_resource_list_item_img" id="panel_item_resource_list_item_extract_img" src="../../public/image/resource/money.png"><div id="panel_item_resource_list_item_extract_amount" class="panel_item_resource_list_item_amount">20</div></div>
+                        </div>
+                    </div>
+				</div>
+				<div class="panel_item_right_header">Функционал</div>
+				<div class="panel_item_right_content">
+				    <div class="panel_item_button" onclick="ui.upgradeItem();"><img class="panel_item_button_img" src="../../public/image/ui/up_arrow.png"></div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+<div class="loader">
+    <div class="loader_white">
+        <div class="loader_center">
+            <div class="lader_text">LOADING</div>
+            <div class=""><span class="fileLoading"></span>/<span class="fileLoadingMax"></span></div>
+        </div>
+    </div>
+    <div class="loader_black">
+        <div class="loader_center">
+            <div class="lader_text">LOADING</div>
+            <div class=""><span class="fileLoading"></span>/<span class="fileLoadingMax"></span></div>
+        </div>
+    </div>
+</div>
+<style>
+    .loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #222;
+        z-index: 1000;
+    }
+    .loader_white {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #fff;
+        color: #222;
+    }
+    .loader_black {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: #222;
+        color: #fff;
+        opacity: 0;
+    }
+    .loader_center {
+        position: fixed;
+        top: calc(50% - 50px);
+        left: calc(50% - 100px);
+        text-align: center;
+    }
+    .lader_text {
+        font-size: 30px;
+        text-align: center;
+    }
+</style>
+
+<div class="sysStat">
+    <div class="dom_fps">FPS:<span id="domFPS"></span></div>
+    <div class="dom_fps">Objects:<span id="domOBJS"></span></div>
+    <div class="dom_fps">X:<span id="domX"></span></div>
+    <div class="dom_fps">Y:<span id="domY"></span></div>
+</div>
+   
+   
+<div class="message_container" style="display: none;">
+    <div class="message"></div>
+</div>
+
+<script src="../../public/javascript/positions.js"></script>
+<script src="../../public/javascript/UI.js"></script>
+<script src="../../public/javascript/loaderUi.js"></script>
+<script src="../../public/javascript/general.js"></script>
+<script src="../../public/javascript/build.js"></script>
+<script src="../../public/javascript/item.js"></script>
+<script src="../../public/javascript/controls.js"></script>
+<script src="../../public/javascript/game.js"></script>
+<script src="../../public/javascript/map.js"></script>
+<script src="../../public/javascript/main.js"></script>
+
+</body>
+</html>
